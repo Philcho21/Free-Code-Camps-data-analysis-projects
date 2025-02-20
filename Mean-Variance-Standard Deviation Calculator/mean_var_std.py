@@ -1,40 +1,48 @@
 import numpy as np
 
 def calculate(list):
+    if len(list) != 9:
+        raise ValueError("List must contain nine numbers.") # Raise an exception if the list does not contain 9 numbers
     # Convert the list into a 3x3 Numpy array
     matrix = np.array(list).reshape(3, 3)
 
     # Create a dictionary to store the results
-    result = {
+    calculations = {
         'mean': [
-            np.mean(matrix, axis=0).tolist(),  # mean of each column
-            np.mean(matrix, axis=1).tolist(),  # mean of each row
-            np.mean(matrix.flatten())  # mean of the entire matrix
+            matrix.mean(axis=0).tolist(),  # mean of each column
+            matrix.mean(axis=1).tolist(),  # mean of each row
+            matrix.flatten().mean()  # mean of the entire matrix
         ],
+
         'variance': [
-            np.var(matrix, axis=0).tolist(),  # variance of each column
-            np.var(matrix, axis=1).tolist(),  # variance of each row
-            np.var(matrix.flatten())  # variance of the entire matrix
+            matrix.var(axis=0).tolist(),  # variance of each column
+            matrix.var(axis=1).tolist(),  # variance of each row
+            matrix.flatten().var()  # variance of the entire matrix
         ],
+
         'standard deviation': [
-            np.std(matrix, axis=0).tolist(),  # standard deviation of each column
-            np.std(matrix, axis=1).tolist(),  # standard deviation of each row
-            np.std(matrix.flatten())  # standard deviation of the entire matrix
-        ],
+            matrix.std(axis=0).tolist(),  # standard deviation of each column
+            matrix.std(axis=1).tolist(),  # standard deviation of each row
+            matrix.flatten().std()  # standard deviation of the entire matrix
+            ],
         'max': [
-            np.max(matrix, axis=0).tolist(),  # max value in each column
-            np.max(matrix, axis=1).tolist(),  # max value in each row
-            np.max(matrix.flatten())  # max value in the entire matrix
+            matrix.max(axis=0).tolist(),  # max value in each column
+            matrix.max(axis=1).tolist(),  # max value in each row
+            matrix.flatten().max()  # max value in the entire matrix
         ],
         'min': [
-            np.min(matrix, axis=0).tolist(),  # min value in each column
-            np.min(matrix, axis=1).tolist(),  # min value in each row
-            np.min(matrix.flatten())  # min value in the entire matrix
+            matrix.min(axis=0).tolist(),  # min value in each column
+            matrix.min(axis=1).tolist(),  # min value in each row
+            matrix.flatten().min()  # min value in the entire matrix
         ],
         'sum': [
-            np.sum(matrix, axis=0).tolist(),  # sum of each column
-            np.sum(matrix, axis=1).tolist(),  # sum of each row
-            np.sum(matrix.flatten())  # sum of the entire matrix
+            matrix.sum(axis=0).tolist(),  # sum of each column
+            matrix.sum(axis=1).tolist(),  # sum of each row
+            matrix.flatten().sum()  # sum of the entire matrix
         ]
-    }
-    return calculate
+        }
+    return calculations
+
+# Test the function
+list = [0,1,2,3,4,5,6,7,8]
+print(calculate(list))
